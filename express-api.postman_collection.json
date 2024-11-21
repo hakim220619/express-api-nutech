@@ -1,0 +1,450 @@
+{
+	"info": {
+		"_postman_id": "fb1c4c21-523d-4594-b945-e4a1d6daec8d",
+		"name": "express-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "23660381"
+	},
+	"item": [
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"hakim@gmail.com\",\r\n    \"password\": \"12345678\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/login",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\": \"hakim@gmail.com\",\r\n    \"first_name\": \"hak\",\r\n    \"last_name\": \"hakim\",\r\n    \"password\": \"12345678\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/register",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhha2ltQGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJoYWsiLCJsYXN0X25hbWUiOiJoYWtpbSIsImlhdCI6MTczMjE5MzA0OSwiZXhwIjoxNzMyMjM2MjQ5fQ.hpDimicGVTpxaIPcQL278fTyatapuK9Hdwi0saIXt6E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/profile",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"profile"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "update profile",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhha2ltQGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJoYWsiLCJsYXN0X25hbWUiOiJoYWtpbSIsImlhdCI6MTczMjE5MzA0OSwiZXhwIjoxNzMyMjM2MjQ5fQ.hpDimicGVTpxaIPcQL278fTyatapuK9Hdwi0saIXt6E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"first_name\": \"hakim edit\",\r\n  \"last_name\": \"hak Edited\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/profile/update",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"profile",
+						"update"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "profile image",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhha2ltQGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJoYWsiLCJsYXN0X25hbWUiOiJoYWtpbSIsImlhdCI6MTczMjE5MzA0OSwiZXhwIjoxNzMyMjM2MjQ5fQ.hpDimicGVTpxaIPcQL278fTyatapuK9Hdwi0saIXt6E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImRhbmlAZ21haWwuY29tIiwiZmlyc3RfbmFtZSI6IkRhbmkiLCJsYXN0X25hbWUiOiJMdWttYW4iLCJpYXQiOjE3MzIxNjkzMjAsImV4cCI6MTczMjIxMjUyMH0.UpbE7jBo2JMoQ4t-9DTJyeDbXgDr6Sj8r0kw2OoNEr",
+						"name": "authorization",
+						"type": "text"
+					},
+					{
+						"key": "Cache-Control",
+						"value": "no-cache",
+						"name": "cache-control",
+						"type": "text"
+					},
+					{
+						"key": "Postman-Token",
+						"value": "<calculated when request is sent>",
+						"name": "postman-token",
+						"type": "text"
+					},
+					{
+						"key": "Host",
+						"value": "<calculated when request is sent>",
+						"name": "host",
+						"type": "text"
+					},
+					{
+						"key": "User-Agent",
+						"value": "PostmanRuntime/7.39.1",
+						"name": "user-agent",
+						"type": "text"
+					},
+					{
+						"key": "Accept",
+						"value": "*/*",
+						"name": "accept",
+						"type": "text"
+					},
+					{
+						"key": "Accept-Encoding",
+						"value": "gzip, deflate, br",
+						"name": "accept-encoding",
+						"type": "text"
+					},
+					{
+						"key": "Connection",
+						"value": "keep-alive",
+						"name": "connection",
+						"type": "text"
+					},
+					{
+						"key": "Content-Type",
+						"value": "multipart/form-data",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "profile_image",
+							"value": "",
+							"type": "file"
+						}
+					]
+				},
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/profile/image",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"profile",
+						"image"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "banner",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/banner",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"banner"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "services",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhha2ltQGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJoYWsiLCJsYXN0X25hbWUiOiJoYWtpbSIsImlhdCI6MTczMjE5MzA0OSwiZXhwIjoxNzMyMjM2MjQ5fQ.hpDimicGVTpxaIPcQL278fTyatapuK9Hdwi0saIXt6E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/services",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"services"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "balance",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhha2ltQGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJoYWsiLCJsYXN0X25hbWUiOiJoYWtpbSIsImlhdCI6MTczMjE5MzA0OSwiZXhwIjoxNzMyMjM2MjQ5fQ.hpDimicGVTpxaIPcQL278fTyatapuK9Hdwi0saIXt6E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/balance",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"balance"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "topup",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhha2ltQGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJoYWsiLCJsYXN0X25hbWUiOiJoYWtpbSIsImlhdCI6MTczMjE5MzA0OSwiZXhwIjoxNzMyMjM2MjQ5fQ.hpDimicGVTpxaIPcQL278fTyatapuK9Hdwi0saIXt6E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"top_up_amount\": 200000\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/topup",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"topup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhha2ltQGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJoYWsiLCJsYXN0X25hbWUiOiJoYWtpbSIsImlhdCI6MTczMjE5MzA0OSwiZXhwIjoxNzMyMjM2MjQ5fQ.hpDimicGVTpxaIPcQL278fTyatapuK9Hdwi0saIXt6E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"service_code\": \"MUSIK\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/transaction",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"transaction"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "transaction history",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Imhha2ltQGdtYWlsLmNvbSIsImZpcnN0X25hbWUiOiJoYWsiLCJsYXN0X25hbWUiOiJoYWtpbSIsImlhdCI6MTczMjE5MzA0OSwiZXhwIjoxNzMyMjM2MjQ5fQ.hpDimicGVTpxaIPcQL278fTyatapuK9Hdwi0saIXt6E",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://express-api-nutech.sppapp.my.id/api/transaction/history?limit=2",
+					"protocol": "https",
+					"host": [
+						"express-api-nutech",
+						"sppapp",
+						"my",
+						"id"
+					],
+					"path": [
+						"api",
+						"transaction",
+						"history"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
