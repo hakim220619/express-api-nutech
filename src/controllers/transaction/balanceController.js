@@ -1,6 +1,5 @@
 const Balance = require('../../models/transaction/balanceModel');
 
-// Controller untuk mendapatkan semua layanan
 const getBalance = async (req, res) => {
     try {
         const { email } = req.user;

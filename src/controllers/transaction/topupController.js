@@ -1,12 +1,11 @@
-const Topup = require("../../models/transaction/topupModel"); // Import fungsi model
+const Topup = require("../../models/transaction/topupModel");
 const Transaction = require("../../models/transaction/transactionModel");
 
 const createTopup = async (req, res) => {
   try {
-    const email = req.user.email; // Email dari JWT payload
+    const email = req.user.email;
     const { top_up_amount } = req.body;
 
-    // Validasi input top-up
     if (!top_up_amount || isNaN(top_up_amount) || top_up_amount <= 0) {
       return res.status(400).json({
         status: 1,
@@ -14,7 +13,6 @@ const createTopup = async (req, res) => {
       });
     }
 
-    // Ambil user ID berdasarkan email
     const userId = await Topup.getUserIdByEmail(email);
     if (!userId) {
       return res.status(404).json({
@@ -23,7 +21,6 @@ const createTopup = async (req, res) => {
       });
     }
 
-    // Buat transaksi top-up dengan status Success
     const transactionId = await Transaction.createTransaction(
       "topup",
       userId,
@@ -31,10 +28,8 @@ const createTopup = async (req, res) => {
       top_up_amount
     );
 
-    // Perbarui saldo pengguna
     await Topup.updateUserBalance(userId, "debit", top_up_amount);
 
-    // Ambil saldo terbaru pengguna
     const updatedBalance = await Topup.getUserBalanceById(userId);
 
     return res.status(201).json({

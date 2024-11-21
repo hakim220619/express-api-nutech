@@ -1,12 +1,11 @@
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const userModel = require('../../models/membership/userModel');
-// Register User
+
 exports.register = async (req, res) => {
     try {
         const { email, password, first_name, last_name } = req.body;
 
-        // Validasi input
         if (!email || !password || !first_name || !last_name) {
             return res.status(400).json({
                 status: 101,
@@ -15,7 +14,6 @@ exports.register = async (req, res) => {
             });
         }
 
-        // Validasi format email
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailRegex.test(email)) {
             return res.status(400).json({
@@ -25,7 +23,6 @@ exports.register = async (req, res) => {
             });
         }
 
-        // Validasi panjang password minimal 8 karakter
         if (password.length < 8) {
             return res.status(400).json({
                 status: 105,
@@ -34,7 +31,6 @@ exports.register = async (req, res) => {
             });
         }
 
-        // Periksa apakah email sudah terdaftar
         const existingUser = await userModel.findUserByEmail(email);
         if (existingUser.length > 0) {
             return res.status(409).json({
@@ -44,13 +40,10 @@ exports.register = async (req, res) => {
             });
         }
 
-        // Hash password
         const hashedPassword = await bcrypt.hash(password, 10);
 
-        // Simpan data pengguna
-        const userId = await userModel.createUser(email, first_name, last_name, hashedPassword);
+        await userModel.createUser(email, first_name, last_name, hashedPassword);
 
-        // Respons berhasil
         res.status(200).json({
             status: 0,
             message: 'Registrasi berhasil, silahkan login',

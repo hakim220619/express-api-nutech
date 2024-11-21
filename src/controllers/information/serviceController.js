@@ -1,6 +1,5 @@
 const { getAllServices } = require('../../models/information/serviceModel');
 
-// Controller untuk mendapatkan semua layanan
 const fetchAllServices = async (req, res) => {
     try {
         const services = await getAllServices();

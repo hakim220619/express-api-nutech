@@ -3,13 +3,11 @@ const Balance = require("../../models/transaction/balanceModel");
 const Transaction = require("../../models/transaction/transactionModel");
 const Topup = require("../../models/transaction/topupModel");
 
-// Controller untuk mendapatkan semua layanan dengan filter
 const transaction = async (req, res) => {
     try {
       const email = req.user.email;
-      const { service_code } = req.body; // Ambil filter dan email dari body request
+      const { service_code } = req.body;
   
-      // Ambil semua layanan atau filter jika service_code disediakan
       const services = await Service.getAllServices(service_code);
   
       if (!services || services.length === 0) {
@@ -19,14 +17,13 @@ const transaction = async (req, res) => {
         });
       }
   
-      // Ambil saldo pengguna berdasarkan email
       const balance = await Balance.fetchBalance(email);
   
       if (balance[0]["balance"] < services[0]["service_tariff"]) {
         return res.status(400).json({
           status: 1,
           message: "Saldo tidak mencukupi untuk layanan yang dipilih.",
-          data: balance[0]["balance"], // Mengembalikan saldo pengguna
+          data: balance[0]["balance"],
         });
       }
   
@@ -38,7 +35,6 @@ const transaction = async (req, res) => {
         });
       }
   
-      // Buat transaksi dan ambil nomor invoice dari model
       const { invoiceNumber } = await Transaction.createTransaction(
         service_code,
         userId,
@@ -46,12 +42,10 @@ const transaction = async (req, res) => {
         services[0]["service_tariff"]
       );
   
-      // Perbarui saldo pengguna
       await Topup.updateUserBalance(userId, "credit", services[0]["service_tariff"]);
   
-      // Respons detail transaksi
       const response = {
-        invoice_number: invoiceNumber, // Gunakan nomor invoice dari model
+        invoice_number: invoiceNumber,
         service_code: services[0]["service_code"],
         service_name: services[0]["service_name"],
         transaction_type: "PAYMENT",
@@ -76,9 +70,8 @@ const transaction = async (req, res) => {
   const fetchTransactionHistory = async (req, res) => {
     try {
       const { email } = req.user;
-      const { limit } = req.query; // Ambil limit dari query parameter
+      const { limit } = req.query;
   
-      // Cari userId berdasarkan email
       const userId = await Topup.getUserIdByEmail(email);
       if (!userId) {
         return res.status(404).json({
@@ -87,29 +80,23 @@ const transaction = async (req, res) => {
         });
       }
 
-  
-      // Ambil data riwayat transaksi
       let DataTransactionHistory = await Transaction.fetchTransactionHistory(userId);
   
-      // Urutkan data berdasarkan tanggal transaksi (created_on) secara descending
       DataTransactionHistory = DataTransactionHistory.sort(
         (a, b) => new Date(b.created_on) - new Date(a.created_on)
       );
   
-      // Jika limit diberikan, potong data sesuai limit
       if (limit) {
         const limitedData = DataTransactionHistory.slice(0, parseInt(limit, 10));
         DataTransactionHistory = limitedData;
       }
-  console.log(DataTransactionHistory);
   
-      // Bentuk respons sesuai format yang diminta
       const response = {
-        offset: 0, // Untuk saat ini tetap 0 karena offset tidak diterapkan
+        offset: 0,
         limit: limit ? parseInt(limit, 10) : DataTransactionHistory.length,
         records: DataTransactionHistory.map((transaction) => ({
           invoice_number: transaction.invoice_number,
-          transaction_type: transaction.transaction_type, // Ubah ke huruf besar (contoh: TOPUP, PAYMENT)
+          transaction_type: transaction.transaction_type,
           description: transaction.description,
           total_amount: transaction.amount,
           created_on: transaction.created_at,

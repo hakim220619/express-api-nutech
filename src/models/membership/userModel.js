@@ -21,7 +21,7 @@ const updateUserByEmail = async (email, { first_name, last_name }) => {
         WHERE email = ?
     `;
     const [result] = await pool.execute(query, [first_name, last_name, email]);
-    return result.affectedRows > 0; // Return true jika berhasil diupdate
+    return result.affectedRows > 0;
 };
 
 const updateUserImageByEmail = async (email, data) => {
@@ -33,7 +33,6 @@ const updateUserImageByEmail = async (email, data) => {
         `;
         const [result] = await pool.execute(query, [data.profile_image, email]);
 
-        // Jika baris yang diperbarui lebih dari 0, pembaruan berhasil
         return result.affectedRows > 0;
     } catch (error) {
         console.error('Error updating user image:', error);

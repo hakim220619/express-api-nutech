@@ -1,4 +1,4 @@
-const userModel = require('../../models/membership/userModel'); // Model untuk mengambil data dari database
+const userModel = require('../../models/membership/userModel');
 const fs = require('fs');
 const path = require('path');
 
